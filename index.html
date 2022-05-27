@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>imageadjuster</title>
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="jquery.imgareaselect.min.js"></script>
+<link type="text/css" rel="stylesheet" href="imgareaselect-animated.css">
+<script type="text/javascript" src="imageadjuster.js"></script>
+<script type="text/javascript">
+var imageAdjusters = [];
+function addImageAdjuster(id)
+{
+    imageAdjusters[id] = new ImageAdjuster(id);
+    imageAdjusters[id].drawUI();
+    var elm = document.getElementById(id + "adjust");
+    elm.onclick = function() {
+        var wrap = document.getElementById(id + "adjustwrap");
+        if ("none" == wrap.style.display) {
+            imageAdjusters[id].init();
+            wrap.style.display = "";
+        } else {
+            imageAdjusters[id].clear();
+            wrap.style.display = "none";
+        }
+    };
+}
+</script>
+</head>
+<body>
+<form>
+<input type="text" id="image" maxlength="255" size="40" value="Cats.jpg">
+<input type="button" name="imageadjust" id="imageadjust" value="a" style="width: 20px;" title="Изменить картинку" onclick="">
+<script type="text/javascript">addImageAdjuster("image")</script>
+</form>
+</body>
+</html>
